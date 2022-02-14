@@ -2,6 +2,91 @@
 	<head>
 	</head>
 	<body>
-		Project 1 here
+		<h1>Project 1: Stuff</h1>
+		<div>
+			<h2>Task 1: Drawing Single-Color Triangles</h2>
+			<ul>
+				<li>
+					First, I found the left most and right most coordinates, as well as finding the bottom and top most y coordinates. This is used to defined a region in which we will rasterize triangle.
+				</li>
+				<li>
+					I defined a helper function which performs the line test given a point and 2 other and determine whether the point is inside a triangle.
+				</li>
+				<li>
+					I perform the line test 3 times to cover (P1, P2), (P2, P3), (P3, P1) pairs, and if all 3 results in a positive value, we know that the point is inside the triangle. Otherwise, it is not.
+				</li>
+				<li>
+					My algorithm only checks points that are bounded within the 3 provided points, so it just checks pixels within a box using the values of the 3 provided points.
+				</li>
+				<img src="./p1t1.png"/>
+			</ul>
+		</div>
+
+		<div>
+			<h2>Task 2: Antialiasing by Supersampling</h2>
+			<ul>
+				<li>
+					I added 2 additional for loops to rasterize_triangle which samples the subpixels within each pixel using the step size of 1/sqrt(sampling_rate).
+				</li>
+				<li>
+					I modified the set_framebuffer_target() and set_sample_rate() such that the resize also accounts for sample rate. 
+				</li>
+				<li>
+					I added the same 2 for loop from rasterize_triangle into resolve_to_framebuffer() such that it adds all the values of the subpixels and divide by the sample rate. 
+				</li>
+				<li>
+					My algorithm only checks points that are bounded within the 3 provided points, so it just checks pixels within a box using the values of the 3 provided points.
+				</li>
+				<img src="./p1t2a.png"/>
+				<img src="./p1t2b.png"/>
+				<img src="./p1t2c.png"/>
+			</ul>
+		</div>
+		<div>
+			<h2>Task 3: Transform</h2>
+			<ul>
+				<li>
+					I wanted the cubeman to wave his right hand. 
+				</li>
+				
+				<img src="./p1t3.png"/>
+			</ul>
+		</div>
+		<div>
+			<h2>Task 4: Barycentric Coordinates</h2>
+			<ul>
+				<li>
+					Barycentric coordinates is a coordinate system that determines how similar a particular point is with the 3 vertices that determines the triangle. For example,
+					if a point is directly on one of the vertices, then we know that it is exactly the color defined at that corner. However, if a point is in the center of the triangle, 
+					then it will be a mix of all three vertex color. 
+				</li>
+				<img src="./p1t4a.png"/>
+				<img src="./p1t4.png"/>
+			</ul>
+		</div>
+		<div>
+			<h2>Task 5: Barycentric Coordinates</h2>
+			<ul>
+				<li>
+					Barycentric coordinates is a coordinate system that determines how similar a particular point is with the 3 vertices that determines the triangle. For example,
+					if a point is directly on one of the vertices, then we know that it is exactly the color defined at that corner. However, if a point is in the center of the triangle, 
+					then it will be a mix of all three vertex color. 
+				</li>
+				
+				<img src="./p1t4.png"/>
+			</ul>
+		</div>
+		<div>
+			<h2>Task 4: Barycentric Coordinates</h2>
+			<ul>
+				<li>
+					Barycentric coordinates is a coordinate system that determines how similar a particular point is with the 3 vertices that determines the triangle. For example,
+					if a point is directly on one of the vertices, then we know that it is exactly the color defined at that corner. However, if a point is in the center of the triangle, 
+					then it will be a mix of all three vertex color. 
+				</li>
+				
+				<img src="./p1t4.png"/>
+			</ul>
+		</div>
 	</body>
 </html>
