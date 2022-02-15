@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+#container {
+    margin: auto;
+    width: 50%;
+}
+
+.figure-caption {
+    color: #c4c4c4
+}
