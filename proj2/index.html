@@ -105,7 +105,8 @@
 						Similar to Task 4, I found that drawing a diagram with the halfedges, edges, vertices, and faces is extremely helpful for the implementation.
 					</li>
 					<li>
-						First, I got all the components I needed (Half edges, vertices, edges, faces), and also created the 3 new edges, 6 half edges, 2 new faces, and 1 new vertex.
+						First, I got all the components I needed (Half edges, vertices, edges, faces), and also created the 3 new edges, 6 half edges, 2 new faces, and 1 new vertex. We also want to 
+						mark the left and right new edges so that later in our subdivision algorithm, it knows which edge to flip. 
 					</li>
 					<li>
 						Then, I just assigned all the neighbors and half edges based on the diagram.
@@ -143,10 +144,10 @@
 						Then, I compute the position of the new midpoint after we split the nodes and store it in the edges->newPosition
 					</li>
 					<li>
-						Then, we split every edge in the original mesh and also mark the edges that need to be flipped. 
+						Then, we split every edge in the original mesh.
 					</li>
 					<li>
-						Finally, we flipped all the new edges and update the vertex positions to the new positions.
+						Finally, we flipped all the new marked edges and update the vertex positions to the new positions.
 					</li>
 					<li>
 						The reason that the cube subdivides asymmetrically is due to the initial mesh where the faces have the diagonal split. This causes the middle of the cube
