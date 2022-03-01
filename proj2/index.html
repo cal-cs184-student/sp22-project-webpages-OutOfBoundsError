@@ -6,7 +6,7 @@
 	<body>
 		<div id="container">
 
-			<h1>Project 2: Mesh Edit</h1>
+			<h1>Project 2: Mesh Edit by Johnson Nguy, Dequan Zhang</h1>
 			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj2/index.html">Write up Link </a>
 			<div id="divider">
 
@@ -19,7 +19,7 @@
 						De Casteljau's algorithm is a recursive method whih evaluates polynomial which create bezier curves. 
 					</li>
 					<li>
-						In my implementation, I created a helper function which evaluates thE lerp of the positions of the points, then, I loop in contiguous pairs of points and lerping the 2 points and then
+						In my implementation, we created a helper function which evaluates the lerp of the positions of the points, then, loop in contiguous pairs of points and lerping the 2 points and then
 						storing in our nextLevel vector. This, reduces the number of points in half which creates a nice smooth curve. 
 					</li>
 
@@ -68,7 +68,7 @@
 				<h2>Task 3:  Area-Weighted Vertex Normals</h2>
 				<ul>
 					<li>
-						I did a halfedge traversal around the current vertex by using the next() and twin() point. During this traversal, I summed up all of its face normals. Then, returned the result as a unit vector.
+						We did a halfedge traversal around the current vertex by using the next() and twin() point. During this traversal, we summed up all of its face normals. Then, returned the result as a unit vector.
 					</li>
 					<figure class="figure">
 						<img src="./p2t3a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
@@ -84,7 +84,7 @@
 				<h2>Task 4: Edge flip</h2>
 				<ul>
 					<li>
-						I followed the edge flip diagram shared on piazza to implement the edge flip functionality. First, I get all the components that I will modify (edges, vertices, faces, half edges). Then, assigned them using setNeighbors following
+						We followed the edge flip diagram shared on piazza to implement the edge flip functionality. First, We get all the components that we will modify (edges, vertices, faces, half edges). Then, assigned them using setNeighbors following
 						the diagram, and also update all of the halfedges of vertices, faces, and edges.
 					</li>
 					<figure class="figure">
@@ -102,14 +102,14 @@
 				<h2>Task 5: Edge split</h2>
 				<ul>
 					<li>
-						Similar to Task 4, I found that drawing a diagram with the halfedges, edges, vertices, and faces is extremely helpful for the implementation.
+						Similar to Task 4, we found that drawing a diagram with the halfedges, edges, vertices, and faces is extremely helpful for the implementation.
 					</li>
 					<li>
-						First, I got all the components I needed (Half edges, vertices, edges, faces), and also created the 3 new edges, 6 half edges, 2 new faces, and 1 new vertex. We also want to 
+						First, we got all the components we needed (Half edges, vertices, edges, faces), and also created the 3 new edges, 6 half edges, 2 new faces, and 1 new vertex. We also want to 
 						mark the left and right new edges so that later in our subdivision algorithm, it knows which edge to flip. 
 					</li>
 					<li>
-						Then, I just assigned all the neighbors and half edges based on the diagram.
+						Then, we just assigned all the neighbors and half edges based on the diagram.
 					</li>
 					
 					<figure class="figure">
@@ -134,14 +134,14 @@
 				<h2>Task 6: Loop Subdivision for Mesh Upsampling</h2>
 				<ul>
 					<li>
-						To implement upsampling, I followed the recommendation in the comments.
+						To implement upsampling, we followed the recommendation in the comments.
 					</li>
 					<li>
-						First, I compute the new positions of all the vertices by going through all vertex of the mesh and also all the neighboring vertex position of each vertex.
-						Then, I apply the formula provided in the spec.
+						First, we compute the new positions of all the vertices by going through all vertex of the mesh and also all the neighboring vertex position of each vertex.
+						Then, we apply the formula provided in the spec.
 					</li>
 					<li>
-						Then, I compute the position of the new midpoint after we split the nodes and store it in the edges->newPosition
+						Then, we compute the position of the new midpoint after we split the nodes and store it in the edges->newPosition
 					</li>
 					<li>
 						Then, we split every edge in the original mesh.
