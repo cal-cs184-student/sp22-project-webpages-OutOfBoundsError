@@ -1,7 +1,173 @@
 <html>
 	<head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
-		Project 3-1 here
+		<div id="container">
+
+			<h1>Project 3-1: Rasterizer</h1>
+			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj1/index.html">Write up Link </a>
+			<div id="divider">
+
+			</div>
+
+			<div>
+				<h2>Part 1: Ray generation and Scene Intersection</h2>
+				<ul>
+					<li>
+						The rendering pipeline works as follows, we raytrace tiles of the scene in which we generate our camera rays which we get the radiance for those rays.
+						Then, inside of our est_randiance_global illumination, this is where we handle the our primitive intersections are handled and optimization using bvh. To get the illumination, we have to add both the zero bounce and one bounce radiance to render our scene/image. 
+					</li>
+					<li>
+						For the triangle intersection algorithm, I used the Molle Trumbore Algorithm which is a optimized algorith for finding triangle intersections. To implement this, I first compute all the components needed for the algorithm such as the subtractions, cross products, dot products.
+						Then, I created the 3D vector for S2 (dot) E2, S1 (dot) S, S2 (dot) D. Then I multiply it with the scalar (1/ S1 (dot) E1). To get the b3 value, we have to do 1 - b1 - b2 which will give us our barycentric coordinates.
+					</li>
+					
+					<figure class="figure">
+						<img src="./p1a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">cow.dae</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p1b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">beast.dae</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p1c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">teapot.dae</figcaption>
+					</figure>
+				</ul>
+			</div>
+
+			<div>
+				<h2>Part 2: Bounding Volume Hierarchy</h2>
+				<ul>
+					<li>
+						For my BVH algorithm, I decided to first find the largest axis using .extent and then get the midpoint of that axis. Then, I split the primitives that are smaller than the midpoint to go into the left child, and the others go into the right child. 
+						We only split if the number of primitives are greater than the max_leaf_size.
+					</li>
+					<li>
+						When we run pathtracer on bunny.dae, without BVH, we were able to render it in 316s using our computer. In comparison using BVH, we got 0.196 seconds to render the image.
+						We ran pathtracer on CBDragon without BVH, we got a total of ~2000s to render. Meanwhile, we got 0.1554s seconds with our BVH optimization. Similarly, for the bench, we got 700 seconds to render without BVH.
+						With BVH, we got 0.1497s to render the file bench.dae. We see that using BVH significantly speed up our rendering process. 
+
+					</li>
+					
+					<figure class="figure">
+						<img src="./p2a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bunny</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p2b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bench</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p2c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBDragon</figcaption>
+					</figure>
+				</ul>
+			</div>
+			<div>
+				<h2>Part 3: Direct illumination</h2>
+				<ul>
+					<li>
+						For the hemisphere estimation, we looped through the number of samples, and we get a sample from our hemisphereSampler and we need to switch coordinate system thus, we have to multiply our sample with o2w. Then, we can construct our direciton adn origin for our new ray using 
+						our sampled vector. Then, we check for intersection with out bvh if there is an intersect, this implies that there is a bounce so we accumlate the sum into L_out following the formula. We normalize at the end before returning. 
+					</li>
+					<li>
+						For the importance sampling, we sample directly from the lights which we can get from the function scene->lights. We can get the radiance using sample_L as well as the sampled vector. Then, we use similar as the hemisphere algorithm where we transform to a different coordinate system and create a new ray with the 
+						sampled vector. Since we are sampling lights, we want to ignore intersections since we want to know whether the source has a direct hit point. Then we accumulate reflected light into L_out and divide by the pdf. Then, we normalize by the num_samples.
+					</li>
+					<li>
+						We found that using hemisphere estimation, it created noisy images but as we increase the sample size, we reduce the noise. In comparison, using light sampling for our direct illumination, we see that we get a less noisy
+						image when we run on the same sample size as hemisphere. So, we see that in our case, using light sampling is more efficient since we don't have to scale up our sample size to eliminate noise in hemisphere estimation. 
+					</li>
+					<figure class="figure">
+						<img src="./p3a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bunny with hemisphere sampling</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bunny with light sampling</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBGems with hemisphere sampling</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBGems with light sampling</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3e1.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBBunny with light sampling 1 light ray 1 sample rate</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3e2.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBGems with light sampling 4 light ray 1 sample rateg</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3e3.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBGems with light sampling 16 light ray 1 sample rate</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p3e4.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBGems with light sampling 64 light ray 1 sample rate</figcaption>
+					</figure>
+
+				</ul>
+			</div>
+			<div>
+				<h2>Part 4: Global illumination</h2>
+				<ul>
+					<li>
+						Barycentric coordinates is a coordinate system that determines how similar a particular point is with the 3 vertices that determines the triangle. For example,
+						if a point is directly on one of the vertices, then we know that it is exactly the color defined at that corner. However, if a point is in the center of the triangle, 
+						then it will be a mix of all three vertex color. 
+					</li>
+					<figure class="figure">
+						<img src="./p1t4.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Test 7</figcaption>
+					</figure>
+					<br/>
+					<figure class="figure">
+						<img src="./p1t4a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Illustration of Barycentric coordinates</figcaption>
+					</figure>
+				</ul>
+			</div>
+			<div>
+				<h2>Part 5 Adaptive Sampling</h2>
+				<ul>
+					<li>
+						Pixel sampling is when we do sampling in the uv space where the function we use is bilinear_sample or nearest_sample.
+					</li>
+					<li>
+						First I compute the barycentric coordinates, and then get the uv coordinates by multiplying u0,u1,u2 with alpha, beta, gamma respectively. We do the same for v values.
+					</li>
+					<li>
+						Then, we pass it into the bilinear/nearest function to get the texture for that coordinates, and update it in our sample_buffer.
+					</li>
+					<figure class="figure">
+						<img src="./p1t5a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Nearest sample rate 1</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p1t5b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bilinear sample rate 1</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p1t5d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Nearest sample rate 16</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p1t5c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bilinear sample rate 16</figcaption>
+					</figure>
+				</ul>
+			</div>
+			
+		</div>
+		
 	</body>
 </html>
