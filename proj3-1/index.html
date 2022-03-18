@@ -6,8 +6,8 @@
 	<body>
 		<div id="container">
 
-			<h1>Project 3-1: Rasterizer</h1>
-			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj1/index.html">Write up Link </a>
+			<h1>Project 3-1 By Johnson Nguy and Dequan Zhang</h1>
+			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj3-1/index.html">Write up Link </a>
 			<div id="divider">
 
 			</div>
@@ -121,9 +121,9 @@
 				<h2>Part 4: Global illumination</h2>
 				<ul>
 					<li>
-						Barycentric coordinates is a coordinate system that determines how similar a particular point is with the 3 vertices that determines the triangle. For example,
-						if a point is directly on one of the vertices, then we know that it is exactly the color defined at that corner. However, if a point is in the center of the triangle, 
-						then it will be a mix of all three vertex color. 
+						First, we get a sample vector using sample_f. Then, we want to generate the probability for russian roullete according to the hint of (0.4 or 0.3). 
+						The base case is that we only use russian roullete when we are using direct illumination which is when max_ray_depth <=1. Otherwise, we want to continue bouncing until the ray's depth is 1 or 0.
+						We create a new ray similar to the previous part and check whether or not that ray intersect our scene. If so, there must be a bounce so we recurse. If no bounce then we can simply return L_out. 
 					</li>
 					<figure class="figure">
 						<img src="./p1t4.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
@@ -131,38 +131,95 @@
 					</figure>
 					<br/>
 					<figure class="figure">
-						<img src="./p1t4a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-						<figcaption class="figure-caption">Illustration of Barycentric coordinates</figcaption>
+						<img src="./p4a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBSphere</figcaption>
 					</figure>
+					<figure class="figure">
+						<img src="./p4b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBbunny</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">dragon</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./spheres_1024_m_0.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">with indirect illumination m = 0</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./spheres_1024_m_5.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">with direct illumination m = 5</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./bunny0.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBbunny m = 0 sample 1024</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./bunny1.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBbunny m = 1 sample 1024</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./bunny2.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBbunny m = 2 sample 1024</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./bunny3.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBbunny m = 3 sample 1024</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./bunny100.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">CBbunny m = 100 sample 1024</figcaption>
+					</figure>
+
+					<figure class="figure">
+						<img src="./blob1.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 1</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./blob2.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 2</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./blob4.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 4</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./blob8.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 8</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./blob16.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 16</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./blob64.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 64</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./blob1024.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Blob sample size 1024</figcaption>
+					</figure>
+
+
+
 				</ul>
 			</div>
 			<div>
 				<h2>Part 5 Adaptive Sampling</h2>
 				<ul>
 					<li>
-						Pixel sampling is when we do sampling in the uv space where the function we use is bilinear_sample or nearest_sample.
-					</li>
-					<li>
-						First I compute the barycentric coordinates, and then get the uv coordinates by multiplying u0,u1,u2 with alpha, beta, gamma respectively. We do the same for v values.
-					</li>
-					<li>
-						Then, we pass it into the bilinear/nearest function to get the texture for that coordinates, and update it in our sample_buffer.
+						For my adaptive sampling pixel sampling, we first check if the number of samples is 1, if it is we simply generate a new ray at middle of the pixeland call est_radiance_global_illumination.
+						Then, we update the pixel. if number of samples is more than one, we have to iteratively sample and we only check if we converged if we have processed samplesPerBatch. On each iteration, we generate a random sample and 
+						create a ray with that sample as the offset into our pixel. Then, we estimate the radiance using est_radiance_global_illumination, and accumulate it in our result. Then, we populate s1 and s2 with the illum and illum^2. 
+						Once we converged, we update the sampleBuffer with result/ n where n is the number of samples we've processed and update the sampleCountBuffer to n. 
 					</li>
 					<figure class="figure">
-						<img src="./p1t5a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-						<figcaption class="figure-caption">Nearest sample rate 1</figcaption>
+						<img src="./bunny.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Bunny with 2048 samples per pixel, 1 sample per light 5 max ray depth</figcaption>
 					</figure>
 					<figure class="figure">
-						<img src="./p1t5b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-						<figcaption class="figure-caption">Bilinear sample rate 1</figcaption>
-					</figure>
-					<figure class="figure">
-						<img src="./p1t5d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-						<figcaption class="figure-caption">Nearest sample rate 16</figcaption>
-					</figure>
-					<figure class="figure">
-						<img src="./p1t5c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-						<figcaption class="figure-caption">Bilinear sample rate 16</figcaption>
+						<img src="./bunny_rate.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Heatmap</figcaption>
 					</figure>
 				</ul>
 			</div>
