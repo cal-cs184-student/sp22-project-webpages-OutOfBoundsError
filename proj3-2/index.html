@@ -7,7 +7,7 @@
 		<div id="container">
 
 			<h1>Project 3-2: Rasterizer</h1>
-			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj1/index.html">Write up Link </a>
+			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj3-2/index.html">Write up Link </a>
 
 
 			<div>
@@ -24,9 +24,11 @@
 					</li>
 					<li>
 						The multibounce for 3 max ray depth is three bounce which we can see that the left sphere contains the reflection of the ceiling and the reflections of the walls on the right sphere. However, the reflection of the right sphere
-						on the left sphere is not visible yet.					</li>
+						on the left sphere is not visible yet.					
+					</li>
 					<li>
-						The multibounce for 4 max ray depth is four bounces which we can see the bounce from the right sphere onto the left sphere then into the camera.				</li>
+						The multibounce for 4 max ray depth is four bounces which we can see the bounce from the right sphere onto the left sphere then into the camera.				
+					</li>
 					<li>
 						The multibounce for 5 and 100 max ray depth, there are no significant difference in the rendering. 
 					</li>
@@ -68,8 +70,9 @@
 				<h2>Part 4: Depth of fields</h2>
 				<ul>
 					<li>
-						The difference between pinhole camera model and thin lens camera model is that with pinhole, the whole scene is focused. For thin lens camera model, we 
-						can focus on certain part of the scene and blur our the surrounding scene. 
+						The difference between pinhole camera model and thin lens camera model is that with pinhole, the whole scene is focused which is due to the pinhole since when light reaches the pinhole, it expands outwards causing the whole scene to be focused. For thin lens camera model, we 
+						can focus on certain part of the scene and blur our the surrounding scene since our lens is wider so when the light hits the lens, it expands inward to a certain part of the scene. As our aperture increases the smaller the size of our focus area, which is why we see that in the staff
+						solution, if we set the lens radius to 0, essentially we are doing the pinhole camera model.
 					</li>
 					<figure class="figure">
 						<img src="./Gems3.9Dist.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
@@ -86,8 +89,7 @@
 					<figure class="figure">
 						<img src="./Gems5.5dist.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
 						<figcaption class="figure-caption">0.1 lensRadius 5.5 focal dist</figcaption>
-					</figure>
-
+					</figure> 
 					<figure class="figure">
 						<img src="./Bunny0radius.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
 						<figcaption class="figure-caption">0 lensRadius</figcaption>
@@ -106,8 +108,6 @@
 					</figure>
 				</ul>
 			</div>
-
-
 		</div>
 		
 	</body>
