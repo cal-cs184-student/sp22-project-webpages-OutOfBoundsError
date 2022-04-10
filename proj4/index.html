@@ -1,7 +1,200 @@
 <html>
 	<head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
-		Project 4 here
+		<div id="container">
+
+			<h1>Project 4: Cloth Sim</h1>
+			<a href="https://cal-cs184-student.github.io/sp22-project-webpages-OutOfBoundsError/proj4/index.html">Write up Link </a>
+			<div id="divider">
+
+			</div>
+
+			<div>
+				<h2>Part 1: Masses and springs</h2>
+				<ul>
+					<figure class="figure">
+						<img src="./p4t1a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">pinned2.json</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t1b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">pinned2.json w/o shearing</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t1c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">pinned2.json w/ only shearing</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t1d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">pinned2.json w/ everything</figcaption>
+					</figure>
+				</ul>
+			</div>
+
+			<div>
+				<h2>Part 2: Simulation via numerical integration</h2>
+				<ul>
+					<li>
+						Changing ks, it changes the way the cloth drops and bounces based on the pin. With a lower ks, we have more wrinkles and bounce when the cloth is dropped.
+						While higher ks, we have less bounce, and it seems like the cloth is alot stiffer. 
+					</li>
+					<li>
+						Changing the density affects the way the cloth is released since if we have a lower density, then it is less likely to have the wrinkles and less affected by the air.
+						Higher density, we see that when the cloth is released theres more wrinkle and more bounce since its heavier.
+					</li>
+					<li>
+						The damping affects the stiffness and heaviness of the cloth. Lower damp makes the cloth drops faster and more loose. While higher damping levels, makes it drop slower and moves less at the resting position.
+					</li>
+					<figure class="figure">
+						<img src="./p4t2a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption"></figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t2b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption"></figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t2c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption"></figcaption>
+					</figure>
+					
+				</ul>
+			</div>
+			<div>
+				<h2>Part 3: Handling collisions with other objects</h2>
+				<ul>
+					<li>
+						For the ks = 500, we see that the cloth doesn't fluffy out as much as when ks is bigger. We also see that higher value for ks means that we have
+						less folds when resting on the ball.
+					</li>
+					<figure class="figure">
+						<img src="./p4t3a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">ks: 5000</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t3b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">ks: 500</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t3c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">ls: 50000</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t3d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">lying on plane</figcaption>
+					</figure>
+				</ul>
+			</div>
+			<div>
+				<h2>Part 4: Handling self-collisions</h2>
+				<ul>
+					<li>
+						With varying the ks, it changes how the cloth falls down and interact with collision, when we have a high ks and low density, the cloth floats and constantly swirl and folds.
+						With varying the density, it changes how the cloth folds on itself when the cloth falls down, we see that higher density leads to more folds. 
+					</li>
+					<figure class="figure">
+						<img src="./p4t4a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Test 7</figcaption>
+					</figure>
+					<br/>
+					<figure class="figure">
+						<img src="./p4t4b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Illustration of Barycentric coordinates</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t4c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Test 7</figcaption>
+					</figure>
+					<br/>
+					<figure class="figure">
+						<img src="./p4t4d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Illustration of Barycentric coordinates</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t4e.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Test 7</figcaption>
+					</figure>
+					<br/>
+					<figure class="figure">
+						<img src="./p4t4f.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">High density high ks</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t4f.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">low density low ks</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t4g.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">low density low ks</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t4i.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">low density high ks</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t4h.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">high density low ks</figcaption>
+					</figure>
+
+				</ul>
+			</div>
+			<div>
+				<h2>Part 5: Shaders</h2>
+				<ul>
+					<li>
+						Shader programs are used to provide shading to 3D scenes and runs in parallel on GPU which accelerates our render of a scene.
+					</li>
+					<li>
+						Vertex shaders are the input into the fragment shaders. Vertex shader transforms vertices such as changing the position and normal vectors and then 
+						setting gl_positions to the resulting vector. And the fragment shader sets the color between the vertices and write it to out_color.
+					</li>
+					<li>
+						Blinn-Phong shading model is used to display the reflection of shiny surfaces. It is the sum of the 3 types of reflection that is ambient, diffuse adn specular. 
+						The ambient light is the uniform light that is scattered around the scene. The Diffuse light is like the reflection of the shadow of our objects and its surfaces. The specular is teh shininess reflection from the object.
+					</li>
+					<li>
+						For the bump mapping, we can only see small bumps on the surfaces of our sphere and plane. But for the displacement, we see actual bigger bumps and holes on our sphere and 
+						plane.
+					</li>
+					<figure class="figure">
+						<img src="./p4t5a.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Ambiet</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5b.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Diffuse</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5c.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Specular</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5d.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Phong ka=0.3 kd=0.5 ks=0.777</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5e.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">With texture_4.png</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5f.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Texture_3 bump</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5g.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Texture_3 displacement</figcaption>
+					</figure>
+					<figure class="figure">
+						<img src="./p4t5h.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+						<figcaption class="figure-caption">Mirror</figcaption>
+					</figure>
+
+				</ul>
+			</div>
+		</div>
+		
 	</body>
 </html>
